@@ -14,8 +14,32 @@
     You should have received a copy of the GNU General Public License
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
+{{!
+    @template block_myoverview/nav-grouping-selector
+
+    This template renders grouping dropdown.
+
+    Example context (json):
+    {
+        "allincludinghidden": false,
+        "all": true,
+        "inprogress": false,
+        "future": false,
+        "past": false,
+        "favourites": false,
+        "hidden": false,
+        "displaygroupingallincludinghidden": false,
+        "displaygroupingall": true,
+        "displaygroupinginprogress": true,
+        "displaygroupingfuture": true,
+        "displaygroupingpast": true,
+        "displaygroupingfavourites": true,
+        "displaygroupinghidden": true,
+        "displaygroupingselector": true
+    }
+}}
 {{#displaygroupingselector}}
-<div class="dropdown mb-1 mr-1">
+<div class="dropdown mb-1 ml-1">
     <button id="groupingdropdown" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="{{#str}} aria:groupingdropdown, block_myoverview {{/str}}">
         <span data-active-item-text>
             {{#allincludinghidden}}{{#str}} allincludinghidden, block_myoverview {{/str}}{{/allincludinghidden}}
@@ -29,6 +53,45 @@
         </span>
     </button>
     <ul class="dropdown-menu" role="menu" data-show-active-item data-skip-active-class="true" data-active-item-text aria-labelledby="groupingdropdown">
+        {{#displaygroupingallincludinghidden}}
+        <li>
+            <a class="dropdown-item" href="#" data-filter="grouping" data-value="allincludinghidden" data-pref="allincludinghidden" aria-label="{{#str}} aria:allcoursesincludinghidden, block_myoverview {{/str}}" aria-controls="courses-view-{{uniqid}}" role="menuitem" {{#allincludinghidden}}aria-current="true"{{/allincludinghidden}}>
+                {{#str}} allincludinghidden, block_myoverview {{/str}}
+            </a>
+        </li>
+        {{/displaygroupingallincludinghidden}}
+        {{#displaygroupingall}}
+        <li class="dropdown-divider" role="presentation">
+            <span class="filler">&nbsp;</span>
+        </li>
+        <li>
+            <a class="dropdown-item" href="#" data-filter="grouping" data-value="all" data-pref="all" aria-label="{{#str}} aria:allcourses, block_myoverview {{/str}}" aria-controls="courses-view-{{uniqid}}" role="menuitem" {{#all}}aria-current="true"{{/all}}>
+                {{#str}} all, block_myoverview {{/str}}
+            </a>
+        </li>
+        {{/displaygroupingall}}
+        {{#displaygroupinginprogress}}
+        <li class="dropdown-divider" role="presentation">
+            <span class="filler">&nbsp;</span>
+        </li>
+        <li>
+            <a class="dropdown-item" href="#" data-filter="grouping" data-value="inprogress" data-pref="inprogress" aria-label="{{#str}} aria:inprogress, block_myoverview {{/str}}" aria-controls="courses-view-{{uniqid}}" role="menuitem" {{#inprogress}}aria-current="true"{{/inprogress}}>
+                {{#str}} inprogress, block_myoverview {{/str}}
+            </a>
+        </li>
+        {{/displaygroupinginprogress}}
+        {{#displaygroupingfuture}}
+            {{^displaygroupinginprogress}}
+            <li class="dropdown-divider" role="presentation">
+                <span class="filler">&nbsp;</span>
+            </li>
+            {{/displaygroupinginprogress}}
+        <li>
+            <a class="dropdown-item" href="#" data-filter="grouping" data-value="future" data-pref="future" aria-label="{{#str}} aria:future, block_myoverview {{/str}}" aria-controls="courses-view-{{uniqid}}" role="menuitem" {{#future}}aria-current="true"{{/future}}>
+                {{#str}} future, block_myoverview {{/str}}
+            </a>
+        </li>
+        {{/displaygroupingfuture}}
         {{#displaygroupingpast}}
             {{^displaygroupinginprogress}}
                 {{^displaygroupingfuture}}
